@@ -19,7 +19,8 @@ search jjiao --> modify
   
 - eigen3랑 pcl-1.8 include할 때 필요한 버전들이 local에 있기 때문에 경로 설정 다시!
   
-## [cloudcompare](https://snapcraft.io/install/cloudcompare/ubuntu)
+## cloudcompare
+Install [here](https://snapcraft.io/install/cloudcompare/ubuntu)
 ```bash
 sudo apt update
 sudo apt install snapd
