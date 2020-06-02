@@ -53,6 +53,8 @@ cd Library/pcd2ILCCcsv/bin/
 ```
 Using cloudcompare, set the bounding box range by users.
 
+2-c
+Start preprocessing (bounding box filter)
 ```bash
 rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/planes/ref_con.yaml vel_to_pcd/planes/data_con.yaml
 ```
@@ -61,21 +63,36 @@ rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/planes/ref_con.y
 terminal 1:
 roscore 먼저
 terminal 2:
-  cd ~/catkin_ws/src/lidar_appearance_calibration/config/
-  rosrun lidar_appearance_calibration calib_plane_extraction pcd ../data/example/top_front/cfg.yaml
+test/raw 에 raw/data/raw_ROI/data_ROI 파일 네개를 넣어주고 실행
+```bash
+cd ~/catkin_ws/src/lidar_appearance_calibration/config/
+rosrun lidar_appearance_calibration calib_plane_extraction pcd ../data/example/test/cfg.yaml
+```
 terminal 3:
 실행하고난뒤에 rviz를 켜놓는다(위치**)
-  cd ~/catkin_ws/src/lidar_appearance_calibration/config/
-  rviz -d ../rviz/plane_extraction.rviz
+```bash
+cd ~/catkin_ws/src/lidar_appearance_calibration/config/
+rviz -d ../rviz/plane_extraction.rviz
+```
 terminal 4:
-터미널 2에서 계산되어 나옴
-  rostopic pub /contact/icp std_msgs/String "data: ''" 
+터미널 2에서 계산되어 test/plnae 폴더에 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
+```bash
+rostopic pub /contact/icp std_msgs/String "data: ''" 
+```
 
-Visualize and check the extracted plane order
-
-
-
+4. Visualize and check the extracted plane order
+그냥 별거 없고... pcd를 pointcloud로 바꿔주는 과정이 왜 필요한지 모르겠네
+```bash
 rosrun pcl_ros pcd_to_pointcloud ../data/example/top_front/plane/ref_planes.pcd
+```
+
+5. Implement ICP to minimize Plane-to-Plane error
+Auto initialization
+rosrun lidar_appearance_calibration calib_icp ../data/example/top_front/ref_cfg.yaml ../data/example/top_front/data_cfg.yaml a
+Manual initialization
+rosrun lidar_appearance_calibration calib_icp ../data/example/top_front/ref_cfg.yaml ../data/example/top_front/data_cfg.yaml m
+Call the program
+rostopic pub /contact/save_plane std_msgs/String "data: ''"
 
 ---------------------------------------------------------------------------------
 로스백 record
