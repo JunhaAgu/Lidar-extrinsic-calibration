@@ -75,7 +75,9 @@ cd ~/catkin_ws/src/lidar_appearance_calibration/config/
 rviz -d ../rviz/plane_extraction.rviz
 ```
 terminal 4:
-터미널 2에서 계산되어 test/plnae 폴더에 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
+터미널 2에서 계산되어 
+test/plnae 폴더 --> 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
+test 폴더 --> ref_cfg.yaml , data_cfg.yaml 두개의 파일 나옴 
 ```bash
 rostopic pub /contact/icp std_msgs/String "data: ''" 
 ```
@@ -87,10 +89,17 @@ rosrun pcl_ros pcd_to_pointcloud ../data/example/top_front/plane/ref_planes.pcd
 ```
 
 5. Implement ICP to minimize Plane-to-Plane error
+```bash
+cd ~/catkin_ws/src/lidar_appearance_calibration/config/
+```
 Auto initialization
-rosrun lidar_appearance_calibration calib_icp ../data/example/top_front/ref_cfg.yaml ../data/example/top_front/data_cfg.yaml a
+```bash
+rosrun lidar_appearance_calibration calib_icp ../data/example/test/ref_cfg.yaml ../data/example/test/data_cfg.yaml a
+```
 Manual initialization
-rosrun lidar_appearance_calibration calib_icp ../data/example/top_front/ref_cfg.yaml ../data/example/top_front/data_cfg.yaml m
+```bash
+rosrun lidar_appearance_calibration calib_icp ../data/example/test/ref_cfg.yaml ../data/example/test/data_cfg.yaml m
+```
 Call the program
 rostopic pub /contact/save_plane std_msgs/String "data: ''"
 
