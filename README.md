@@ -36,8 +36,26 @@ https://www.paraview.org/veloview/
 1. Create a yaml file cfg.yaml into a fold, please follow ../data/example/top_tail/cfg.yaml to write
 
 2. Preproces raw pointcloud to keep points with only planes. You can use the below function or CloudCompare software like this: input="pcd" output="csv"
-$ rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/planes/data1_con.yaml vel_to_pcd/planes/data2_con.yaml
 
+2-a 
+bag filte to pcd
+```bash
+rosrun pcl_ros bag_to_pcd room_left.bag velodyne_points vel_to_pcd/
+rosrun pcl_ros bag_to_pcd <input_file>  <topic>         <output_directory>
+```
+
+2-b
+pcd to csv
+```bash
+cd Library/pcd2ILCCcsv/bin/
+./pcd2csv ~/vel_to_pcd/planes/ref.pcd
+./pcd2csv ~/vel_to_pcd/planes/data.pcd
+```
+Using cloudcompare, set the bounding box range by users.
+
+```bash
+rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/planes/ref_con.yaml vel_to_pcd/planes/data_con.yaml
+```
 
 3. Extract planes from pointcloud
 terminal 1:
