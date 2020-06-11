@@ -56,7 +56,7 @@ Using cloudcompare, set the bounding box range by users.
 Start preprocessing (bounding box filter)
 modify code for folder directory.
 ```bash
-rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_con.yaml vel_to_pcd/planes/data_con.yaml
+rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_box.yaml vel_to_pcd/planes/data_box.yaml
 ```
 
 3. Extract planes from pointcloud
@@ -73,6 +73,7 @@ terminal 3:
 rviz -d catkin_ws/src/lidar_appearce_calibration/rviz/plane_extraction.rviz
 ```
 terminal 4:
+이전에 
 터미널 2에서 계산되어 
 test/plnae 폴더 --> 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
 test 폴더 --> ref_cfg.yaml , data_cfg.yaml 두개의 파일 나옴 
@@ -92,12 +93,14 @@ cd ~/catkin_ws/src/lidar_appearance_calibration/config/
 ```
 Auto initialization
 ```bash
-rosrun lidar_appearance_calibration calib_icp ../data/example/test/ref_cfg.yaml ../data/example/test/data_cfg.yaml a
+rosrun lidar_appearance_calibration calib_icp vel_to_pcd/zero/ref_cfg.yaml vel_to_pcd/zero/data_cfg.yaml a
 ```
+
 Manual initialization
 ```bash
-rosrun lidar_appearance_calibration calib_icp ../data/example/test/ref_cfg.yaml ../data/example/test/data_cfg.yaml m
+rosrun lidar_appearance_calibration calib_icp vel_to_pcd/zero/ref_cfg.yaml vel_to_pcd/zero/data_cfg.yaml m
 ```
+
 Call the program
 rostopic pub /contact/save_plane std_msgs/String "data: ''"
 
