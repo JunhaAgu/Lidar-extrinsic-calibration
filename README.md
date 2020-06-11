@@ -47,7 +47,7 @@ rosrun pcl_ros bag_to_pcd <input_file>  <topic>         <output_directory>
 pcd to csv
 ```bash
 cd Library/pcd2ILCCcsv/bin/
-./pcd2csv ~/vel_to_pcd/planes/ref.pcd
+./pcd2csv ~/vel_to_pcd/"Folder_Name"/ref.pcd
 ./pcd2csv ~/vel_to_pcd/planes/data.pcd
 ```
 Using cloudcompare, set the bounding box range by users.
@@ -56,16 +56,16 @@ Using cloudcompare, set the bounding box range by users.
 Start preprocessing (bounding box filter)
 modify code for folder directory.
 ```bash
-rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_box.yaml vel_to_pcd/planes/data_box.yaml
+rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_box.yaml vel_to_pcd/"Floder name"/data_box.yaml
 ```
 
 3. Extract planes from pointcloud
 terminal 1:
 roscore 먼저
 terminal 2:
-test/raw 에 raw/data/raw_ROI/data_ROI 파일 네개를 넣어주고 실행
+cfg.yaml 파일 만들어주고 실행
 ```bash
-rosrun lidar_appearance_calibratiocalib_plane_extraction pcd vel_to_pcd/zero/cfg.yaml
+rosrun lidar_appearance_calibration calib_plane_extraction pcd vel_to_pcd/"Folder Name"/cfg.yaml
 ```
 terminal 3:
 실행하고난뒤에 rviz를 켜놓는다(위치**)
@@ -75,7 +75,7 @@ rviz -d catkin_ws/src/lidar_appearce_calibration/rviz/plane_extraction.rviz
 terminal 4:
 이전에 
 터미널 2에서 계산되어 
-test/plnae 폴더 --> 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
+"Folder Name"/plnae 폴더 --> 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
 test 폴더 --> ref_cfg.yaml , data_cfg.yaml 두개의 파일 나옴 
 ```bash
 rostopic pub /contact/icp std_msgs/String "data: ''" 
@@ -88,9 +88,7 @@ rosrun pcl_ros pcd_to_pointcloud ../data/example/top_front/plane/ref_planes.pcd
 ```
 
 5. Implement ICP to minimize Plane-to-Plane error
-```bash
-cd ~/catkin_ws/src/lidar_appearance_calibration/config/
-```
+
 Auto initialization
 ```bash
 rosrun lidar_appearance_calibration calib_icp vel_to_pcd/zero/ref_cfg.yaml vel_to_pcd/zero/data_cfg.yaml a
@@ -98,7 +96,7 @@ rosrun lidar_appearance_calibration calib_icp vel_to_pcd/zero/ref_cfg.yaml vel_t
 
 Manual initialization
 ```bash
-rosrun lidar_appearance_calibration calib_icp vel_to_pcd/zero/ref_cfg.yaml vel_to_pcd/zero/data_cfg.yaml m
+rosrun lidar_appearance_calibration calib_icp vel_to_pcd/"Folder_Name"/ref_cfg.yaml vel_to_pcd/"Folder_Name"/data_cfg.yaml m
 ```
 
 Call the program
