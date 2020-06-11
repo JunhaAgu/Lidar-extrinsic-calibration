@@ -43,7 +43,6 @@ bag filte to pcd
 rosrun pcl_ros bag_to_pcd room_left.bag velodyne_points vel_to_pcd/
 rosrun pcl_ros bag_to_pcd <input_file>  <topic>         <output_directory>
 ```
-
 2-b
 pcd to csv
 ```bash
@@ -55,8 +54,9 @@ Using cloudcompare, set the bounding box range by users.
 
 2-c
 Start preprocessing (bounding box filter)
+modify code for folder directory.
 ```bash
-rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/planes/ref_con.yaml vel_to_pcd/planes/data_con.yaml
+rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_con.yaml vel_to_pcd/planes/data_con.yaml
 ```
 
 3. Extract planes from pointcloud
@@ -65,14 +65,12 @@ roscore 먼저
 terminal 2:
 test/raw 에 raw/data/raw_ROI/data_ROI 파일 네개를 넣어주고 실행
 ```bash
-cd ~/catkin_ws/src/lidar_appearance_calibration/config/
-rosrun lidar_appearance_calibration calib_plane_extraction pcd ../data/example/test/cfg.yaml
+rosrun lidar_appearance_calibratiocalib_plane_extraction pcd vel_to_pcd/zero/cfg.yaml
 ```
 terminal 3:
 실행하고난뒤에 rviz를 켜놓는다(위치**)
 ```bash
-cd ~/catkin_ws/src/lidar_appearance_calibration/config/
-rviz -d ../rviz/plane_extraction.rviz
+rviz -d catkin_ws/src/lidar_appearce_calibration/rviz/plane_extraction.rviz
 ```
 terminal 4:
 터미널 2에서 계산되어 
