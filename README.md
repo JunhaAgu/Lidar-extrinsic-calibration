@@ -66,7 +66,7 @@ output: ref.save("lidar_test/ref_ROI.pcd");
 ```
  
 ```bash
-rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_box.yaml vel_to_pcd/"Floder name"/data_box.yaml
+rosrun lidar_appearance_calibration calib_preprocess lidar_test/"Floder name"/ref.csv lidar_test/"Floder name"/data.csv
 ```
 
 3. Extract planes from pointcloud
