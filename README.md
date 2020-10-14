@@ -85,7 +85,7 @@ rviz -d catkin_ws/src/lidar_appearce_calibration/rviz/plane_extraction.rviz
 terminal 4:
 이전에 
 터미널 2에서 계산되어 
-"Folder Name"/plnae 폴더 --> 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
+"Folder Name"/plnae 폴더(make folder) --> 각평면3개씩 그리고 세평면 모두 있는 pcd각각 총 8개의 파일 나옴
 test 폴더 --> ref_cfg.yaml , data_cfg.yaml 두개의 파일 나옴 
 ```bash
 rostopic pub /contact/icp std_msgs/String "data: ''" 
