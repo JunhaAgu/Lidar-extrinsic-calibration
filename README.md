@@ -55,15 +55,14 @@ Using cloudcompare, set the bounding box range by users.
 2-c
 Start preprocessing (bounding box filter)
 modify code for folder directory.
-(
-	//std::string str_ref = "~";
-	//std::string str_data = "~";
-	//std::string str_ref_save = "~";
-	//std::string str_data_save = "~";
- )
- input: csv data
- output: 	ref.save("lidar_test/ref_ROI.pcd");
-	        data.save("lidar_test/data_ROI.pcd");
+//std::string str_ref = " ";
+//std::string str_data = " ";
+//std::string str_ref_save = " ";
+//std::string str_data_save = " ";
+
+input: csv data
+output: ref.save("lidar_test/ref_ROI.pcd");
+	data.save("lidar_test/data_ROI.pcd");
  
 ```bash
 rosrun lidar_appearance_calibration calib_preprocess vel_to_pcd/"Floder name"/ref_box.yaml vel_to_pcd/"Floder name"/data_box.yaml
