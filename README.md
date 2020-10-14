@@ -55,13 +55,13 @@ Using cloudcompare, set the bounding box range by users.
 2-c
 Start preprocessing (bounding box filter)
 modify code for folder directory.
-//std::string str_ref = " ";
-//std::string str_data = " ";
-//std::string str_ref_save = " ";
-//std::string str_data_save = " ";
+//std::string str_ref = " ";/
+//std::string str_data = " ";/
+//std::string str_ref_save = " ";/
+//std::string str_data_save = " ";/
 
-input: csv data
-output: ref.save("lidar_test/ref_ROI.pcd");
+input: csv data/
+output: ref.save("lidar_test/ref_ROI.pcd");/
 	data.save("lidar_test/data_ROI.pcd");
  
 ```bash
