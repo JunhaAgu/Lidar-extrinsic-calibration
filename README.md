@@ -110,7 +110,9 @@ rosrun lidar_appearance_calibration calib_icp vel_to_pcd/"Folder_Name"/ref_cfg.y
 ```
 
 Call the program
+```bash
 rostopic pub /contact/save_plane std_msgs/String "data: ''"
+```
 
 ---------------------------------------------------------------------------------
 로스백 record
